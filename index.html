@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Zemora helps you discover movies, play trailers, build a watchlist, and save favorites.">
+    <title>Zemora — Discover your next favorite movie</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://image.tmdb.org">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <a class="skip-link" href="#mainContent">Skip to content</a>
+    <div class="ambient ambient-left" aria-hidden="true"></div>
+    <div class="ambient ambient-right" aria-hidden="true"></div>
+
+    <header class="site-header sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-shell" aria-label="Main navigation">
+            <div class="container-xxl px-3 px-md-4">
+                <a class="navbar-brand brand" href="#home" aria-label="Zemora home">
+                    <span class="brand-mark" aria-hidden="true"><span>R</span></span>
+                    <span>Zemora<span class="brand-period">.</span></span>
+                </a>
+
+                <div class="nav-controls d-flex align-items-center gap-2 order-lg-3">
+                    <button id="themeToggle" class="theme-switch" type="button" aria-label="Switch to light mode"
+                        aria-pressed="true" title="Change theme">
+                        <span class="theme-sun" aria-hidden="true">☀</span>
+                        <span class="theme-track" aria-hidden="true"><span class="theme-thumb"></span></span>
+                        <span class="theme-moon" aria-hidden="true">☾</span>
+                    </button>
+
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#primaryNavigation" aria-controls="primaryNavigation" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+
+                <div class="collapse navbar-collapse order-lg-2" id="primaryNavigation">
+                    <ul class="navbar-nav main-nav mx-lg-auto mb-3 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link active" href="#home" data-nav="home">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#discover" data-nav="discover">Discover</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#genres" data-nav="genres">Genres</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#watchlist" data-nav="watchlist">
+                                Watchlist <span id="navWatchlistCount" class="nav-count">0</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#favorites" data-nav="favorites">
+                                Favorites <span id="navFavoritesCount" class="nav-count">0</span>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <form id="navSearchForm" class="nav-search" role="search">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" aria-hidden="true">
+                            <circle cx="11" cy="11" r="7"></circle>
+                            <path d="m20 20-4-4"></path>
+                        </svg>
+                        <input id="navSearch" type="search" placeholder="Search movies" aria-label="Search movies"
+                            autocomplete="off">
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main id="mainContent">
+        <section id="home" class="hero-section" aria-labelledby="heroTitle">
+            <div class="container-xxl px-3 px-md-4">
+                <div class="hero-stage">
+                    <div id="heroBackdrop" class="hero-backdrop" aria-hidden="true"></div>
+                    <div class="hero-grain" aria-hidden="true"></div>
+
+                    <div class="row g-0 align-items-center hero-row">
+                        <div class="col-lg-7 hero-content">
+                            <p class="hero-eyebrow">
+                                <span class="live-dot" aria-hidden="true"></span>
+                                NOW FEATURED · PRESS PLAY
+                            </p>
+
+                            <span class="hero-kicker">A story worth staying in for</span>
+                            <h1 id="heroTitle" class="hero-title">Discover something extraordinary.</h1>
+                            <p id="heroDescription" class="hero-description"></p>
+
+                            <div class="hero-meta" aria-label="Featured movie information">
+                                <span id="heroRating" class="hero-rating"></span>
+                                <span class="meta-divider" aria-hidden="true"></span>
+                                <span id="heroYear"></span>
+                                <span class="meta-dot" aria-hidden="true">•</span>
+                                <span id="heroGenre"></span>
+                                <span class="meta-dot" aria-hidden="true">•</span>
+                                <span id="heroDuration"></span>
+                            </div>
+
+                            <div class="hero-actions">
+                                <button id="heroPlayButton" class="btn btn-play-hero" type="button" data-action="play">
+                                    <span class="play-orb" aria-hidden="true"><span class="play-triangle"></span></span>
+                                    <span class="play-copy">
+                                        <strong>Play</strong>
+                                        <small>Official trailer</small>
+                                    </span>
+                                </button>
+
+                                <a class="btn btn-hero-outline" href="#discover" data-nav="discover">Explore Movies</a>
+
+                                <button id="heroWatchlistButton" class="btn btn-hero-outline hero-save" type="button"
+                                    data-action="watchlist">
+                                    <span class="action-symbol" aria-hidden="true">+</span>
+                                    <span class="action-label">Watchlist</span>
+                                </button>
+                            </div>
+
+                            <button id="heroDetailsButton" class="hero-details-link" type="button"
+                                data-action="details">
+                                About this movie <span aria-hidden="true">→</span>
+                            </button>
+                        </div>
+
+                        <div class="col-lg-5 hero-art d-none d-lg-flex">
+                            <figure class="hero-poster-shell">
+                                <img id="heroPoster" class="hero-poster movie-poster" alt="Featured movie poster"
+                                    width="300" height="450" fetchpriority="high">
+                                <button id="heroPosterPlay" class="poster-play hero-poster-play" type="button"
+                                    data-action="play" aria-label="Play featured trailer">
+                                    <span class="play-orb" aria-hidden="true"><span class="play-triangle"></span></span>
+                                </button>
+                                <figcaption class="hero-poster-caption">
+                                    <span>FEATURED PICK</span>
+                                    <span id="heroPosition"></span>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats-section" aria-label="Zemora collection statistics">
+            <div class="container-xxl px-3 px-md-4">
+                <div class="stats-shell">
+                    <div class="stat-item">
+                        <span id="statMovies" class="stat-value">0</span>
+                        <span class="stat-label">Curated movies</span>
+                    </div>
+                    <div class="stat-item">
+                        <span id="statGenres" class="stat-value">0</span>
+                        <span class="stat-label">Genres to explore</span>
+                    </div>
+                    <div class="stat-item">
+                        <span id="statRating" class="stat-value">0.0/10</span>
+                        <span class="stat-label">Average rating</span>
+                    </div>
+                    <div class="stat-item">
+                        <span id="statSaved" class="stat-value">0</span>
+                        <span class="stat-label">On your watchlist</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="discover" class="content-section discover-section" aria-labelledby="discoverTitle">
+            <div class="container-xxl px-3 px-md-4">
+                <div class="section-heading">
+                    <div>
+                        <p class="section-eyebrow">THE COLLECTION / 01</p>
+                        <h2 id="discoverTitle" class="section-title">Discover <span>movies.</span></h2>
+                    </div>
+                    <p class="section-intro">Press play for a trailer, then save the films you want to remember.</p>
+                </div>
+
+                <div class="discovery-panel">
+                    <div class="row g-3 align-items-end">
+                        <div class="col-md-7 col-lg-6">
+                            <label class="field-label" for="movieSearch">Search the collection</label>
+                            <div class="search-field">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" aria-hidden="true">
+                                    <circle cx="11" cy="11" r="7"></circle>
+                                    <path d="m20 20-4-4"></path>
+                                </svg>
+                                <input id="movieSearch" class="form-control" type="search"
+                                    placeholder="Search for a movie..." autocomplete="off">
+                                <button id="clearSearch" class="clear-search" type="button" aria-label="Clear search"
+                                    hidden>×</button>
+                            </div>
+                        </div>
+
+                        <div class="col-md-5 col-lg-3 ms-lg-auto">
+                            <label class="field-label" for="sortSelect">Sort by</label>
+                            <select id="sortSelect" class="form-select sort-select">
+                                <option value="popularity">Popularity</option>
+                                <option value="rating-high">Rating: High to Low</option>
+                                <option value="rating-low">Rating: Low to High</option>
+                                <option value="newest">Newest</option>
+                                <option value="oldest">Oldest</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="genres" class="genre-filter-group">
+                        <div class="filter-heading">
+                            <span class="field-label mb-0">Browse by genre</span>
+                            <span id="resultsCount" class="results-count" role="status" aria-live="polite">Loading
+                                movies...</span>
+                        </div>
+                        <div id="genreFilters" class="genre-chips" role="group" aria-label="Filter movies by genre">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="movieGrid" class="row g-4 movie-grid" aria-label="Discover movies"></div>
+            </div>
+        </section>
+
+        <section id="watchlist" class="content-section saved-section" aria-labelledby="watchlistTitle">
+            <div class="container-xxl px-3 px-md-4">
+                <div class="section-heading saved-heading">
+                    <div>
+                        <p class="section-eyebrow">YOUR SPACE / 02</p>
+                        <h2 id="watchlistTitle" class="section-title" tabindex="-1">
+                            Your watchlist<span class="title-period">.</span>
+                            <span id="watchlistCount" class="collection-count">0</span>
+                        </h2>
+                    </div>
+                    <p class="section-intro">Keep great movies close for when the moment is right.</p>
+                </div>
+                <div id="watchlistGrid" class="row g-4" aria-label="Saved watchlist movies"></div>
+            </div>
+        </section>
+
+        <section id="favorites" class="content-section saved-section" aria-labelledby="favoritesTitle">
+            <div class="container-xxl px-3 px-md-4">
+                <div class="section-heading saved-heading">
+                    <div>
+                        <p class="section-eyebrow">YOUR SPACE / 03</p>
+                        <h2 id="favoritesTitle" class="section-title" tabindex="-1">
+                            Your favorites<span class="title-period">.</span>
+                            <span id="favoritesCount" class="collection-count">0</span>
+                        </h2>
+                    </div>
+                    <p class="section-intro">The films that earned a permanent place in your heart.</p>
+                </div>
+                <div id="favoritesGrid" class="row g-4" aria-label="Favorite movies"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container-xxl px-3 px-md-4">
+            <div class="row g-5 footer-main">
+                <div class="col-lg-5">
+                    <a class="footer-brand brand" href="#home">
+                        <span class="brand-mark" aria-hidden="true"><span>R</span></span>
+                        <span>Zemora<span class="brand-period">.</span></span>
+                    </a>
+                    <p class="footer-tagline">Discover your next favorite movie.</p>
+                    <p class="footer-description">A little corner of the internet for stories worth watching and
+                        trailers worth pressing play on.</p>
+                    <div class="social-links" aria-label="Social platforms">
+                        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"
+                            aria-label="Instagram">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                aria-hidden="true">
+                                <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                                <circle cx="12" cy="12" r="4"></circle>
+                                <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle>
+                            </svg>
+                        </a>
+                        <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer"
+                            aria-label="YouTube">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                aria-hidden="true">
+                                <rect x="2" y="5" width="20" height="14" rx="4"></rect>
+                                <path d="m10 9 5 3-5 3z"></path>
+                            </svg>
+                        </a>
+                        <a href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="X">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                aria-hidden="true">
+                                <path d="M4 4 20 20M20 4 4 20"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <h3 class="footer-heading">Explore</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home" data-nav="home">Home</a></li>
+                        <li><a href="#discover" data-nav="discover">Discover movies</a></li>
+                        <li><a href="#watchlist" data-nav="watchlist">My watchlist</a></li>
+                        <li><a href="#favorites" data-nav="favorites">Favorites</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <h3 class="footer-heading">Popular genres</h3>
+                    <ul class="footer-links">
+                        <li><a href="#genres" data-footer-genre="Action">Action</a></li>
+                        <li><a href="#genres" data-footer-genre="Sci-Fi">Sci-Fi</a></li>
+                        <li><a href="#genres" data-footer-genre="Comedy">Comedy</a></li>
+                        <li><a href="#genres" data-footer-genre="Thriller">Thriller</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© <span id="currentYear"></span> Zemora. All rights reserved.</span>
+                <span>Made By Sadia.</span>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal fade" id="movieModal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+            <div class="modal-content reel-modal">
+                <button type="button" class="btn-close modal-close" data-bs-dismiss="modal"
+                    aria-label="Close movie details"></button>
+                <div class="modal-body p-0">
+                    <div class="row g-0">
+                        <div class="col-sm-5 modal-image-column">
+                            <img id="modalPoster" class="modal-poster movie-poster" alt="" width="400" height="600">
+                            <button id="modalPosterPlay" class="poster-play modal-poster-play" type="button"
+                                data-action="play" aria-label="Play trailer">
+                                <span class="play-orb" aria-hidden="true"><span class="play-triangle"></span></span>
+                            </button>
+                        </div>
+                        <div class="col-sm-7 modal-copy">
+                            <p class="section-eyebrow">A CLOSER LOOK</p>
+                            <h2 id="modalTitle" class="modal-movie-title"></h2>
+                            <div class="modal-facts">
+                                <span id="modalYear"></span>
+                                <span id="modalGenre"></span>
+                                <span id="modalDuration"></span>
+                            </div>
+                            <div id="modalRating" class="modal-rating"></div>
+                            <p id="modalDescription" class="modal-description"></p>
+                            <div class="modal-actions">
+                                <button id="modalPlayButton" class="btn btn-brand" type="button" data-action="play">
+                                    <span class="play-triangle light" aria-hidden="true"></span>
+                                    Play Trailer
+                                </button>
+                                <button id="modalWatchlistButton" class="btn btn-modal-favorite modal-save"
+                                    type="button" data-action="watchlist">
+                                    <span class="action-symbol" aria-hidden="true">+</span>
+                                    <span class="action-label">Add to Watchlist</span>
+                                </button>
+                                <button id="modalFavoriteButton" class="btn btn-modal-favorite" type="button"
+                                    data-action="favorite">
+                                    <span class="action-symbol" aria-hidden="true">♥</span>
+                                    <span class="action-label">Add to Favorites</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="playerModal" tabindex="-1" aria-labelledby="playerTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl modal-fullscreen-sm-down player-dialog">
+            <div class="modal-content player-modal">
+                <div class="player-top">
+                    <div>
+                        <p class="player-kicker"><span class="live-dot" aria-hidden="true"></span> NOW PLAYING ·
+                            OFFICIAL TRAILER</p>
+                        <h2 id="playerTitle" class="player-title"></h2>
+                    </div>
+                    <button type="button" class="player-close" data-bs-dismiss="modal"
+                        aria-label="Close player">×</button>
+                </div>
+
+                <div class="player-stage">
+                    <div id="playerLoader" class="player-loader" aria-hidden="true">
+                        <span class="play-orb large"><span class="play-triangle"></span></span>
+                        <span>Opening trailer...</span>
+                    </div>
+                    <div class="player-frame">
+                        <iframe id="playerFrame" title="Movie trailer"
+                            allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen
+                            referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                    </div>
+                </div>
+
+                <div class="player-bottom">
+                    <p id="playerFacts"></p>
+                    <p>Trailers play inside Zemora. Full films remain on licensed streaming services.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toastContainer" class="toast-container position-fixed p-3" aria-live="polite"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
