@@ -1,280 +1,242 @@
-Zemora — Movie Discovery Website
+# 🎬 Zemora — Movie Discovery Website
 
-Zemora is a modern, responsive front-end movie discovery website designed to help users discover movies, watch official trailers, view movie details, and organize movies into personal watchlists and favorites.
+> **Discover. Explore. Save. Watch.**
 
-The project is built with HTML5, CSS3, and vanilla JavaScript, with Bootstrap 5.3.3 used for responsive layout and UI components.
+>Zemora is a modern, responsive movie discovery website built with **HTML5, CSS3, Vanilla JavaScript, and Bootstrap 5.3.3**. It allows users to explore movies, search and filter by genre, sort by ratings and release date, watch official trailers, view detailed movie information, and build personalized watchlists and favorites.
 
-Features
+---
 
-🎬 Featured movie hero section
+## ✨ Overview
 
-🔎 Movie search
+Zemora was designed as a polished front-end experience rather than a simple movie listing page.
 
-🎭 Genre-based filtering
+The application combines a modern cinematic interface with practical features such as:
 
-↕️ Movie sorting by:
+* 🎬 Featured movie hero section
+* 🔎 Real-time movie search
+* 🎭 Genre-based discovery
+* ↕️ Multiple sorting options
+* ⭐ Ratings and movie metadata
+* ▶️ Official trailer playback
+* 📋 Detailed movie information
+* ➕ Personal watchlist
+* ❤️ Favorites collection
+* 💾 Persistent browser storage
+* 🌙 Dark mode
+* ☀️ Light mode
+* 📊 Collection statistics
+* 🔔 Toast notifications
+* 📱 Responsive layouts
+* ♿ Accessibility-focused interactions
+* 🖼️ Automatic poster fallback handling
 
-Popularity
+---
 
-Rating — High to Low
+## 🎥 Key Features
 
-Rating — Low to High
+### 🔎 Smart Movie Discovery
 
-Newest
+Users can quickly find movies through:
 
-Oldest
+* Navigation search
+* Main discovery search
+* Real-time filtering
+* Genre chips
+* Dynamic result counts
 
-⭐ Movie ratings and metadata
+Search results update instantly without requiring a page reload.
 
-▶️ Official movie trailer playback
+### 🎭 Genre Filtering
 
-📋 Movie details modal
+Movies can be filtered using genre-based navigation, allowing users to quickly explore categories such as:
 
-➕ Personal watchlist
+* Action
+* Adventure
+* Comedy
+* Drama
+* Horror
+* Sci-Fi
+* Thriller
+* Romance
 
-❤️ Favorites collection
+### ↕️ Flexible Sorting
 
-💾 Persistent watchlist and favorites using browser localStorage
+The Discover section supports:
 
-🌙 Dark mode
+| Sorting Option       | Description                |
+| -------------------- | -------------------------- |
+| Popularity           | Most popular movies first  |
+| Rating — High to Low | Highest-rated movies first |
+| Rating — Low to High | Lowest-rated movies first  |
+| Newest               | Latest releases first      |
+| Oldest               | Earliest releases first    |
 
-☀️ Light mode
+---
 
-📊 Collection statistics
+## ❤️ Personal Collections
 
-📱 Responsive design for desktop, tablet, and mobile
+Zemora provides two independent movie collections.
 
-🔔 Toast notifications for user actions
+### ➕ Watchlist
 
-🖼️ Poster fallback when an external poster image fails to load
+Save movies that you want to watch later.
 
-♿ Accessibility features such as keyboard interaction, focus states, ARIA labels, and a skip-to-content link
+### ❤️ Favorites
 
-📌 Sticky navigation with active-section highlighting
+Mark movies that you particularly like and want to keep in your personal collection.
 
-Technologies Used
+Both collections persist between sessions using **browser localStorage**.
 
-Frontend
+### Local Storage
 
-HTML5
+Zemora uses:
 
-CSS3
-
-JavaScript (ES6+)
-
-Bootstrap 5.3.3
-
-External Resources
-
-Google Fonts — DM Sans and Outfit
-
-TMDB image URLs for movie posters/backdrops
-
-YouTube trailer embeds using the privacy-enhanced youtube-nocookie.com player
-
-Project Structure
-
-Zemora/
-│
-├── index.html      # Main website structure and UI
-├── style.css       # Complete visual styling and responsive design
-├── script.js       # Movie data, application logic and interactions
-└── README.md       # Project documentation
-
-How to Run
-
-Zemora is a static front-end project and does not require a backend, database, Node.js installation, or build process.
-
-Option 1 — Open Directly
-
-Download or clone the project.
-
-Keep index.html, style.css, and script.js in the same folder.
-
-Open index.html in a modern web browser.
-
-Option 2 — Use VS Code Live Server
-
-Open the project folder in Visual Studio Code.
-
-Install the Live Server extension.
-
-Right-click index.html.
-
-Select Open with Live Server.
-
-The website will open in your browser.
-
-How It Works
-
-The movie collection is stored as a JavaScript array inside script.js. Each movie contains information such as:
-
-ID
-
-Title
-
-Release year
-
-Genre
-
-Rating
-
-Duration
-
-Trailer ID
-
-Poster URL
-
-Backdrop URL
-
-Description
-
-Popularity value
-
-The application filters and sorts this collection in the browser without requiring a server-side database.
-
-Search and Filtering
-
-Users can search the movie collection using either:
-
-The search field in the navigation bar
-
-The main movie search field
-
-Search results update dynamically as the user types.
-
-Movies can also be filtered by genre using the genre chips displayed in the Discover section.
-
-Sorting
-
-The Discover section supports multiple sorting options:
-
-Popularity
-Rating: High to Low
-Rating: Low to High
-Newest
-Oldest
-
-Watchlist and Favorites
-
-Zemora provides two separate personal collections:
-
-Watchlist
-
-Users can save movies they want to watch later.
-
-Favorites
-
-Users can mark movies as favorites using the heart button.
-
-Both collections are stored in browser localStorage, so saved movies remain available after refreshing or reopening the page in the same browser.
-
-The application uses the following storage keys:
-
+```text
 Zemora-theme
 Zemora-watchlist
 Zemora-favorites
+```
 
-Theme Switching
+This allows the application to remember:
 
-The website supports both dark and light themes.
+* Theme preference
+* Watchlist
+* Favorite movies
 
-The selected theme is saved in localStorage, allowing the user's preference to persist between visits.
+even after refreshing or reopening the website.
 
-Trailer Player
+---
 
-Movie trailers are opened in a Bootstrap modal and loaded through YouTube's privacy-enhanced embedded player.
+## 🌙 Theme System
 
-The trailer URL is generated from each movie's YouTube trailer ID.
+Zemora includes both:
 
-Example format:
+**Dark Mode**
 
-https://www.youtube-nocookie.com/embed/TRAILER_ID
+Designed around a cinematic viewing experience.
 
-Movie Details
+**Light Mode**
 
-Selecting Details opens a modal containing:
+Provides a brighter alternative for users who prefer a lighter interface.
 
-Movie title
+The selected theme is stored locally so the preference persists between visits.
 
-Release year
+---
 
-Genre
+## ▶️ Trailer Experience
 
-Duration
+Users can watch official movie trailers directly from the application.
 
-Rating
+Trailers are displayed inside a responsive Bootstrap modal and loaded through YouTube's privacy-enhanced player:
 
-Description
+```text
+youtube-nocookie.com
+```
 
-Trailer button
+The trailer URL is dynamically generated from the movie's YouTube video ID.
 
-Watchlist button
+---
 
-Favorites button
+## 📋 Movie Details
 
-Responsive Design
+Each movie provides a dedicated details experience containing:
 
-The interface is designed to work across:
+* 🎬 Movie title
+* 📅 Release year
+* 🎭 Genre
+* ⏱️ Duration
+* ⭐ Rating
+* 📝 Description
+* ▶️ Trailer action
+* ➕ Watchlist action
+* ❤️ Favorite action
 
-Desktop
+This keeps the main discovery interface clean while allowing users to explore individual movies in more detail.
 
-Laptop
+---
 
-Tablet
+## 📊 Collection Statistics
 
-Mobile devices
+Zemora provides collection-level statistics so users can quickly see information about their saved movies.
 
-Bootstrap's responsive grid is combined with custom CSS media queries to adapt the layout to different screen sizes.
+The interface dynamically reflects changes when movies are:
 
-Accessibility
+* Added to the watchlist
+* Removed from the watchlist
+* Added to favorites
+* Removed from favorites
 
-The project includes several accessibility-focused features:
+---
 
-Semantic HTML elements
+## 🖼️ Image Error Handling
 
-ARIA labels
+External movie artwork can occasionally fail to load.
 
-Keyboard-accessible movie poster interactions
+Instead of displaying a broken image, Zemora automatically generates a **fallback SVG poster** containing movie-related information.
 
-Visible focus states
+This keeps the interface visually consistent even when external image resources are unavailable.
 
-Skip-to-content link
+---
 
-Accessible buttons and form controls
+## ♿ Accessibility
 
-Live result-count updates
+Accessibility was considered throughout the interface.
 
-Alternative text for movie posters
+The project includes:
 
-Reduced reliance on mouse-only interactions
+* Semantic HTML
+* ARIA labels
+* Keyboard-accessible interactions
+* Visible focus states
+* Skip-to-content navigation
+* Accessible buttons and form controls
+* Alternative text for movie posters
+* Live result-count updates
+* Reduced dependence on mouse-only interactions
 
-Error Handling
+---
 
-Zemora includes client-side handling for common failures.
+## 📱 Responsive Design
 
-If a movie poster cannot be loaded from its external image URL, JavaScript generates a fallback SVG poster based on the movie's genre and information.
+Zemora is designed for multiple screen sizes:
 
-If browser storage is unavailable, the application displays a warning notification rather than crashing.
+| Device      | Experience                           |
+| ----------- | ------------------------------------ |
+| 🖥️ Desktop | Full cinematic dashboard             |
+| 💻 Laptop   | Adaptive multi-column layout         |
+| 📱 Tablet   | Responsive content grid              |
+| 📱 Mobile   | Mobile-friendly navigation and cards |
 
-If a trailer cannot be generated or played, the application displays a warning message.
+Bootstrap's responsive grid is combined with custom CSS media queries to provide adaptive layouts.
 
-Data and External Dependencies
+---
 
-This project does not contain a backend database or external movie API integration.
+# 🛠️ Technologies Used
 
-The movie data is currently stored directly in script.js.
+## Frontend
 
-Movie poster and backdrop images are loaded from TMDB image URLs, while trailers are embedded from YouTube. Therefore, an internet connection may be required for external images, fonts, Bootstrap CDN resources, and trailers to load correctly.
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge\&logo=html5\&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge\&logo=css3\&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge\&logo=javascript\&logoColor=black)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3.3-7952B3?style=for-the-badge\&logo=bootstrap\&logoColor=white)
 
-Customization
+### Core Technologies
 
-Add a New Movie
+* **HTML5** — Semantic structure
+* **CSS3** — Custom styling, responsive layouts, themes
+* **JavaScript ES6+** — Application logic and DOM interactions
+* **Bootstrap 5.3.3** — Responsive components and UI utilities
+* **localStorage** — Client-side persistence
 
-Open script.js and add another movie object to the movies array.
+---
 
-Example:
+# 🧩 How the Application Works
 
+The movie catalog is stored as a JavaScript array inside `script.js`.
+
+Each movie object contains information such as:
+
+```javascript
 {
     id: 21,
     title: "Your Movie",
@@ -289,121 +251,219 @@ Example:
     popularity: 78,
     featured: false
 }
+```
 
-Make sure the movie ID is unique.
+The application processes this data directly in the browser.
 
-Change the Website Theme
+There is no server-side database or backend API.
 
-Most colors and visual variables are defined near the beginning of style.css using CSS custom properties.
+---
 
-The project includes separate variables for:
+# 📂 Project Structure
 
-Dark theme
+```text
+Zemora/
+│
+├── index.html
+├── style.css
+├── script.js
+└── README.md
+```
 
-Light theme
+### File Responsibilities
 
-Accent colors
+| File         | Purpose                                              |
+| ------------ | ---------------------------------------------------- |
+| `index.html` | Website structure and UI                             |
+| `style.css`  | Visual design, themes and responsive styling         |
+| `script.js`  | Movie data, filtering, sorting and application logic |
+| `README.md`  | Project documentation                                |
 
-Text colors
+---
 
-Backgrounds
+# 🚀 Getting Started
 
-Borders
+Zemora is a static front-end application.
 
-Shadows
+No backend, database, Node.js installation, or build process is required.
 
-Focus states
+## Option 1 — Run Directly
 
-Browser Compatibility
+### 1. Clone the repository
 
-Zemora is intended for modern browsers that support:
+```bash
+git clone https://github.com/sadiatayyab/Zemora.git
+```
 
-ES6 JavaScript
+### 2. Open the project
 
-CSS custom properties
+```text
+Zemora/
+```
 
-CSS Grid/Flexbox
+### 3. Launch
 
-localStorage
+Open:
 
-Modern DOM APIs
+```text
+index.html
+```
 
-Recommended browsers include:
+in a modern web browser.
 
-Google Chrome
+---
 
-Microsoft Edge
+## Option 2 — VS Code Live Server
 
-Mozilla Firefox
+For the best development experience:
 
-Safari
+1. Open the project in **Visual Studio Code**
+2. Install the **Live Server** extension
+3. Right-click `index.html`
+4. Select **Open with Live Server**
+5. The website will launch in your browser
 
-Limitations
+---
 
-Movie information is currently static.
+# 🌐 External Resources
 
-There is no backend database.
+Zemora uses several external resources:
 
-There is no user authentication system.
+### Google Fonts
 
-Watchlists and favorites are stored locally in the browser.
+* DM Sans
+* Outfit
 
-Movie images depend on external TMDB image URLs.
+### TMDB
 
-Trailer playback depends on YouTube availability and embedding permissions.
+Movie posters and backdrop artwork are loaded using TMDB image URLs.
 
-The project does not currently provide real-time movie data or personalized recommendations.
-
-Future Enhancements
-
-Possible improvements include:
-
-Integration with a live movie API
-
-User authentication
-
-Cloud-synchronized watchlists
-
-Personalized movie recommendations
-
-Pagination or infinite scrolling
-
-Advanced filters such as language, runtime, and release date
-
-Movie cast and crew information
-
-Multiple streaming-provider links
-
-User reviews and ratings
-
-Backend database integration
-
-Progressive Web App (PWA) support
-
-Credits
-
-Bootstrap
-
-Used for responsive layout, navigation, modals, buttons, and other interface components.
-
-Google Fonts
-
-The project uses:
-
-DM Sans
-
-Outfit
-
-TMDB
-
-Movie poster and backdrop images are loaded from TMDB image URLs.
-
-YouTube
+### YouTube
 
 Official movie trailers are embedded using YouTube's privacy-enhanced player.
 
-License
+### Bootstrap CDN
 
-This project is intended for educational and front-end development purposes.
+Bootstrap 5.3.3 is loaded through a CDN.
 
-Movie titles, posters, trailers, and related media belong to their respective copyright holders.
+> An internet connection may therefore be required for fonts, Bootstrap resources, movie artwork, and trailers.
+
+---
+
+# ⚠️ Current Limitations
+
+Zemora is intentionally implemented as a front-end project, so it currently has some limitations:
+
+* Movie information is static
+* No backend server
+* No database
+* No authentication
+* Watchlists are browser-specific
+* Favorites are browser-specific
+* Movie artwork depends on external resources
+* Trailer availability depends on YouTube
+* No real-time movie data
+* No personalized recommendation engine
+
+---
+
+# 🔮 Future Enhancements
+
+The architecture can be extended with:
+
+### 🎬 Movie Data
+
+* Live movie API integration
+* Real-time movie releases
+* Cast and crew information
+* Movie recommendations
+* Advanced discovery filters
+
+### 👤 User Accounts
+
+* Authentication
+* Cloud-synchronized watchlists
+* Cross-device favorites
+* User profiles
+
+### ⭐ Social Features
+
+* User reviews
+* Personal ratings
+* Movie discussions
+* Shared watchlists
+
+### 📺 Streaming Discovery
+
+* Streaming-provider availability
+* Watch-provider links
+* Region-based availability
+
+### 🚀 Platform Improvements
+
+* Pagination
+* Infinite scrolling
+* Progressive Web App support
+* Backend database integration
+* Personalized recommendation system
+
+---
+
+# 🧠 What I Learned
+
+Building Zemora provided practical experience with:
+
+* DOM manipulation
+* JavaScript event handling
+* Array filtering and sorting
+* Dynamic UI rendering
+* Modal-based interfaces
+* Browser localStorage
+* Responsive web design
+* CSS custom properties
+* Dark/light theme systems
+* Error handling
+* Accessibility
+* External media integration
+* Front-end application architecture
+
+---
+
+# 🎯 Project Goals
+
+Zemora was developed to demonstrate how a modern movie discovery interface can be built using **core front-end technologies without relying on a JavaScript framework or backend**.
+
+The project focuses on:
+
+> **Clean UI + Interactive JavaScript + Responsive Design + Practical UX**
+
+---
+
+# 📌 Project Status
+
+**Status:** ✅ Completed
+
+**Type:** Front-End Web Application
+
+**Architecture:** Static Client-Side Application
+
+**Backend:** None
+
+**Database:** None
+
+---
+
+# 👩‍💻 Author
+
+### Sadia Tayyab
+
+
+## 📄 License
+
+This project is intended for **educational and front-end development purposes**.
+
+Movie titles, posters, trailers, artwork, and related media belong to their respective copyright holders.
+
+---
+
+⭐ **If you found Zemora interesting, consider giving the repository a star!**
